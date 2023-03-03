@@ -13,9 +13,9 @@
 {{- else if eq .TypeID "bool" -}}
     Boolean <span title="Booleans hold true or false values.">💡</span>
 {{- else if eq .TypeID "list" -}}
-    List of {{- template "typename.md.tpl" .Items -}} <span title="Lists hold zero or more items of the specified type.">💡</span>
+    List <span title="Lists hold zero or more items of the specified type.">💡</span> of {{ template "typename.md.tpl" .Items -}}
 {{- else if eq .TypeID "map" -}}
-    Map of {{- template "typename.md.tpl" .Keys -}} &rarr; {{- template "typename.md.tpl" .Keys -}} <span title="Maps hold a set of keys associated with values.">💡</span>
+    Map <span title="Maps hold a set of keys associated with values.">💡</span> of {{ template "typename.md.tpl" .Keys }} &rarr; {{ template "typename.md.tpl" .Keys -}}
 {{- else if eq .TypeID "scope" -}}
     Scope <span title="Scopes hold one or more objects that can be referenced inside the properties of those objects by ref types. Ref types always reference the closest scope.">💡</span>
 {{- else if eq .TypeID "object" -}}

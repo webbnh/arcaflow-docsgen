@@ -3,7 +3,6 @@ package docsgen
 import (
     "bytes"
     "embed"
-    "fmt"
     "html/template"
 
     "go.flow.arcalot.io/engine"
@@ -43,6 +42,22 @@ func RenderTemplates() {
             deployerSchema,
             deployerID,
         }))
-        fmt.Printf("%s", buf.String())
+        // fmt.Printf("%s", buf.String())
     }
+
+    tpl := must2(template.New("").ParseFS(markdownTemplates, "templates/markdown/*.md.tpl", "templates/markdown/partials/*.md.tpl"))
+    buf := &bytes.Buffer{}
+    tpl = tpl.Funcs(template.FuncMap{
+        "toScope": toScope,
+    })
+    must(tpl.ExecuteTemplate(buf, "plugin-protocol.md.tpl", schema.DescribeSchema()))
+    // fmt.Printf("%s", buf.String())
+
+    tpl = must2(template.New("").ParseFS(markdownTemplates, "templates/markdown/*.md.tpl", "templates/markdown/partials/*.md.tpl"))
+    buf = &bytes.Buffer{}
+    tpl = tpl.Funcs(template.FuncMap{
+        "toScope": toScope,
+    })
+    must(tpl.ExecuteTemplate(buf, "schema.md.tpl", schema.DescribeScope()))
+    // fmt.Printf("%s", buf.String())
 }
