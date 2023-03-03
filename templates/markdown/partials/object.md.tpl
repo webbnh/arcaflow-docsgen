@@ -1,9 +1,14 @@
 {{- /*gotype: go.flow.arcalot.io/pluginsdk.schema.Object */ -}}
-- **Type:** Object
-<details><summary>Properties</summary>
-{{- range $propertyID, $property := .Properties -}}
-<details><summary>{{ $propertyID }}</summary>
-{{- template "type.md.tpl" $property.Type -}}
-</details>
-{{- end -}}
-</details>
+<li>
+    <strong>Properties</strong>
+    <ul>
+        {{- range $propertyID, $property := .Properties -}}
+            <li><details><summary>{{ $propertyID }} ({{- template "typename.md.tpl" $property.Type -}})</summary>
+            <ul>
+                {{- template "property.md.tpl" $property -}}
+                {{- template "type.md.tpl" $property.Type -}}
+            </ul>
+            </details></li>
+        {{- end -}}
+    </ul>
+</li>

@@ -1,2 +1,10 @@
 {{- /*gotype: go.flow.arcalot.io/pluginsdk.schema.IntEnum */ -}}
-- **Type:** Enum (int)
+<li>
+    <details><summary>Values</summary>
+        <ul>
+            {{ range $value, $display := .ValidValues }}
+                <li><strong>{{ $value }}:</strong> {{ $display.Name }}</li>
+            {{ end }}
+        </ul>
+    </details>
+</li>

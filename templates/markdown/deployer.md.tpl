@@ -1,7 +1,7 @@
 {{- /*gotype: go.flow.arcalot.io/docsgen.TemplateDeployer */ -}}
-# {{ .DeployerID  }} deployer
+### {{ .DeployerID  }} deployer
 
-## Options
-
-{{ template "type.md.tpl" .Object }}
+<ul>
+{{- template "type.md.tpl" .Object -}}
+</ul>
 

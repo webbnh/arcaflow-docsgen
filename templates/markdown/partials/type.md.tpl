@@ -1,3 +1,4 @@
+<li><strong>Type:</strong> {{ template "typename.md.tpl" . -}}</li>
 {{- if eq .TypeID "enum_string" -}}
     {{- template "enum_string.md.tpl" . -}}
 {{- else if eq .TypeID "enum_integer" -}}
@@ -22,8 +23,10 @@
     {{- template "object.md.tpl" .  -}}
 {{- else if eq .TypeID "one_of_string" -}}
     {{- template "one_of_string.md.tpl" .  -}}
-{{- else if eq .TypeID "one_of_string" -}}
-    {{- template "one_of_string.md.tpl" .  -}}
+{{- else if eq .TypeID "one_of_int" -}}
+    {{- template "one_of_int.md.tpl" .  -}}
 {{- else if eq .TypeID "ref" -}}
     {{- template "ref.md.tpl" .  -}}
+{{- else -}}
+    !!! {{.TypeID}}
 {{- end -}}
