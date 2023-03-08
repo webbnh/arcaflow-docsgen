@@ -1,39 +1,37 @@
 {{- with .Display -}}
     {{- with .Name -}}
-    <li><strong>Name: </strong> {{ . }}</li>
+        <tr><th>Name:</th><td>{{ . }}</td></tr>
     {{- end -}}
     {{- with .Description -}}
-        <li><strong>Description: </strong> {{ . }}</li>
+        <tr><th>Description:</th><td>{{ . }}</td></tr>
     {{- end -}}
 {{- end -}}
-{{- with .Required }}<li><strong>Required</strong></li>{{ end -}}
-{{- with .Default }}<li><strong>Default (JSON encoded)</strong>: {{ . }}</li>{{ end -}}
-{{- with .RequiredIf }}<li><strong>Required if the following fields are set:</strong>
+<tr><th>Required:</th><td>{{- if .Required }}Yes{{ else }}No{{ end }}</td></tr>
+{{- with .Default }}<tr><th>Default (JSON encoded):</th><td><pre><code>{{ . }}</code></pre></td></tr>{{ end -}}
+{{- with .RequiredIf }}<tr><th>Required if the following fields are set:</th><td>
 {{- $first := true -}}
 {{- range . -}}
     {{- if $first -}}
         {{- $first = false -}}
     {{- else -}}, {{ end -}}
     {{ . -}}
-{{- end }}</li>{{ end -}}
-{{- with .RequiredIfNot }}<li><strong>Required if the following fields are not set:</strong>
+{{- end }}</td></tr>{{ end -}}
+{{- with .RequiredIfNot }}<tr><th>Required if the following fields are not set:</th><td>
 {{- $first := true -}}
 {{- range . -}}
     {{- if $first -}}
         {{- $first = false -}}
     {{- else -}}, {{ end -}}
     {{ . -}}
-{{- end }}</li>{{ end -}}
-{{- with .Conflicts }}<li><strong>Conflicts the following fields:</strong>
+{{- end }}</td></tr>{{ end -}}
+{{- with .Conflicts }}<tr><th>Conflicts the following fields:</th><td>
 {{- $first := true -}}
 {{- range . -}}
     {{- if $first -}}
         {{- $first = false -}}
     {{- else -}}, {{ end -}}
     {{ . -}}
-{{- end }}</li>{{ end -}}
-{{- with .Examples }}<li><strong>Examples (JSON encoded):</strong>
-    <ul>
-        {{ range . }}<li><code>{{ . }}</code></li>{{ end }}
-    </ul>
-</li>{{ end -}}
+{{- end }}</td></tr>{{ end -}}
+{{- with .Examples }}<tr><th>Examples (JSON encoded):</th><td>
+{{ range . }}<pre><code>{{ . }}</code></pre>{{ end }}
+</td></tr>{{ end -}}

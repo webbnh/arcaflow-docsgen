@@ -1,0 +1,33 @@
+project_name: arcaflow
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goarch:
+      - amd64
+      - arm64
+    goos:
+      - linux
+      - windows
+      - darwin
+    ignore:
+      - goos: windows
+        goarch: arm64
+    main: ./cmd/arcaflow-docsgen
+archives:
+  - format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+      - README.md
+gomod:
+  proxy: true
+  env:
+    - GOPROXY=https://proxy.golang.org,direct
+    - GOSUMDB=sum.golang.org
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'

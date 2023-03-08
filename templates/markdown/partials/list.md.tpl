@@ -1,11 +1,11 @@
 {{- /*gotype: go.flow.arcalot.io/pluginsdk.schema.List */ -}}
-{{- with .Min }}<li><strong>Minimum items:</strong> {{ . }}</li>{{ end -}}
-{{- with .Max }}<li><strong>Maximum items:</strong> {{ . }}</li>{{ end -}}
-<li>
+{{- with .Min }}<tr><th>Minimum items:</th><td>{{ . }}</td></tr>{{ end -}}
+{{- with .Max }}<tr><th>Maximum items:</th><td>{{ . }}</td></tr>{{ end -}}
+<tr><td colspan="2">
     <details>
         <summary>List items</summary>
-        <ul>
-            {{- template "type.md.tpl" .Items -}}
-        </ul>
+        <table><tbody>
+            {{- partial "type" .Items -}}
+            </tbody></table>
     </details>
-</li>
+</td></tr>

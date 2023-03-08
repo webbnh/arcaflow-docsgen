@@ -1,32 +1,30 @@
-<li><strong>Type:</strong> {{ template "typename.md.tpl" . -}}</li>
+<tr><th>Type:</th><td>{{ partial "typename" . -}}</td>
 {{- if eq .TypeID "enum_string" -}}
-    {{- template "enum_string.md.tpl" . -}}
+    {{- partial "enum_string" . -}}
 {{- else if eq .TypeID "enum_integer" -}}
-    {{- template "enum_integer.md.tpl" . -}}
+    {{- partial "enum_integer" . -}}
 {{- else if eq .TypeID "string" -}}
-    {{- template "string.md.tpl" . -}}
+    {{- partial "string" . -}}
 {{- else if eq .TypeID "pattern" -}}
-    {{- template "pattern.md.tpl" . -}}
+    {{- partial "pattern" . -}}
 {{- else if eq .TypeID "integer" -}}
-    {{- template "integer.md.tpl" . -}}
+    {{- partial "integer" . -}}
 {{- else if eq .TypeID "float" -}}
-    {{- template "float.md.tpl" . -}}
+    {{- partial "float" . -}}
 {{- else if eq .TypeID "bool" -}}
-    {{- template "bool.md.tpl" . -}}
+    {{- partial "bool" . -}}
 {{- else if eq .TypeID "list" -}}
-    {{- template "list.md.tpl" . -}}
+    {{- partial "list" . -}}
 {{- else if eq .TypeID "map" -}}
-    {{- template "map.md.tpl" . -}}
+    {{- partial "map" . -}}
 {{- else if eq .TypeID "scope" -}}
-    {{- template "scope.md.tpl" .  -}}
+    {{- partial "scope" .  -}}
 {{- else if eq .TypeID "object" -}}
-    {{- template "object.md.tpl" .  -}}
+    {{- partial "object" .  -}}
 {{- else if eq .TypeID "one_of_string" -}}
-    {{- template "one_of_string.md.tpl" .  -}}
+    {{- partial "one_of_string" .  -}}
 {{- else if eq .TypeID "one_of_int" -}}
-    {{- template "one_of_int.md.tpl" .  -}}
+    {{- partial "one_of_int" .  -}}
 {{- else if eq .TypeID "ref" -}}
-    {{- template "ref.md.tpl" .  -}}
-{{- else -}}
-    !!! {{.TypeID}}
+    {{- partial "ref" .  -}}
 {{- end -}}

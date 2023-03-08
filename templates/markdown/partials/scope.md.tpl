@@ -1,21 +1,21 @@
 {{- /*gotype: go.flow.arcalot.io/pluginsdk.schema.Scope */ -}}
-<li><strong>Root object:</strong> {{ .Root }}</li>
-<li><strong>Properties</strong><ul>
+<tr><th>Root object:</th><td>{{ .Root }}</td></tr>
+<tr><th>Properties</th><td>
     {{- range $propertyID, $property := (index .Objects .Root).Properties -}}
-        <li><details><summary>{{ $propertyID }} ({{- template "typename.md.tpl" $property.Type -}})</summary>
-                <ul>
-                    {{- template "property.md.tpl" $property -}}
-                    {{- template "type.md.tpl" $property.Type -}}
-                </ul>
-            </details></li>
+        <details><summary>{{ $propertyID }} ({{- partial "typename" $property.Type -}})</summary>
+                <table><tbody>
+                    {{- partial "property" $property -}}
+                    {{- partial "type" $property.Type -}}
+                    </tbody></table>
+            </details>
     {{- end -}}
-</ul></li>
-<li><details><summary><strong>Objects</strong></summary>
+        </td></tr>
+<tr><td colspan="2"><details><summary><strong>Objects</strong></summary>
     {{- range $objectID, $object := .Objects -}}
-        <details><summary>{{ $objectID }} ({{- template "typename.md.tpl" $object -}})</summary>
-            <ul>
-            {{- template "type.md.tpl" $object -}}
-            </ul>
+        <details><summary>{{ $objectID }} ({{- partial "typename" $object -}})</summary>
+            <table><tbody>
+            {{- partial "type" $object -}}
+                </tbody></table>
         </details>
     {{- end -}}
-</details></li>
+</details></td></tr>

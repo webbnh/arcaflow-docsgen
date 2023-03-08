@@ -1,4 +1,4 @@
 {{- /*gotype: go.flow.arcalot.io/pluginsdk.schema.Int */ -}}
-{{- with .Min }}<li><strong>Minimum:</strong> {{ . }}</li>{{ end -}}
-{{- with .Max }}<li><strong>Maximum:</strong> {{ . }}</li>{{ end -}}
-{{- with .Units }}<li><strong>Units:</strong> {{ .BaseUnit.NameLongPluralValue }}</li>{{end}}
+{{- with .Min }}<tr><th>Minimum:</th><td>{{ . }}</td></tr>{{ end -}}
+{{- with .Max }}<tr><th>Maximum:</th><td>{{ . }}</td></tr>{{ end -}}
+{{- with .Units }}<tr><th>Units:</th><td>{{ .BaseUnit.NameLongPluralValue }}</td></tr>{{end}}

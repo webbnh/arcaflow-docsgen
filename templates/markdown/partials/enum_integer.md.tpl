@@ -1,5 +1,5 @@
 {{- /*gotype: go.flow.arcalot.io/pluginsdk.schema.IntEnum */ -}}
-<li>
+<tr><td colspan="2">
     <details><summary>Values</summary>
         <ul>
             {{ range $value, $display := .ValidValues }}
@@ -7,4 +7,5 @@
             {{ end }}
         </ul>
     </details>
-</li>
+    </td>
+</tr>

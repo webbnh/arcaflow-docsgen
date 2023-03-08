@@ -1,10 +1,10 @@
 {{- /*gotype: go.flow.arcalot.io/pluginsdk.schema.Ref */ -}}
-<li><strong>Referenced object:</strong> {{ .ID }}</li>
+<tr><th>Referenced object:</th><td>{{ .ID }}</td></tr>
 {{- with .Display -}}
     {{- with .Name -}}
-        <li>**Name:** {{ . }}</li>
+        <tr><th>Name:</th><td>{{ . }}</td></tr>
     {{ end -}}
     {{- with .Description -}}
-        <li>**Description:** {{ . }}</li>
+        <tr><th>Description:</th><td>{{ . }}</td></tr>
     {{- end -}}
 {{- end -}}

@@ -1,4 +1,4 @@
 {{- /*gotype: go.flow.arcalot.io/pluginsdk.schema.String */ -}}
-{{- with .Min }}<li><strong>Minimum length:</strong> {{ . }}</li>{{ end -}}
-{{- with .Max }}<li><strong>Maximum length:</strong> {{ . }}</li>{{ end -}}
-{{- with .Pattern }}<li><strong>Must match pattern:</strong> <code>{{ .String }}</code></li>{{ end -}}
+{{- with .Min }}<tr><th>Minimum length:</th><td>{{ . }}</td></tr>{{ end -}}
+{{- with .Max }}<tr><th>Maximum length:</th><td>{{ . }}</td></tr>{{ end -}}
+{{- with .Pattern }}<tr><th>Must match pattern:</th><td><code>{{ .String }}</code></td></tr>{{ end -}}
