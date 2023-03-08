@@ -8,7 +8,7 @@ import (
 
     "go.flow.arcalot.io/docsgen"
     "go.flow.arcalot.io/pluginsdk/schema"
-    "gopkg.in/yaml.v2"
+    "gopkg.in/yaml.v3"
 )
 
 func main() {
@@ -42,7 +42,7 @@ func main() {
         log.Fatalf("Failed to generate updated documentation (%v)", err)
     }
 
-    if err := os.WriteFile(markdownFile+"_", updatedMarkdownFile, 0644); err != nil {
+    if err := os.WriteFile(markdownFile+"_", updatedMarkdownFile, 0644); err != nil { //nolint:gosec
         log.Fatalf("Failed to write temporary file (%v)", err)
     }
     if err := os.Rename(markdownFile+"_", markdownFile); err != nil {
