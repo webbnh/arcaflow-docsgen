@@ -1,4 +1,4 @@
-project_name: arcaflow
+project_name: arcaflow-docsgen
 builds:
   - env:
       - CGO_ENABLED=0
