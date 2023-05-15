@@ -1,0 +1,57 @@
+name: Arcaflow Docsgen Python Plugin
+on:
+  workflow_call:
+    inputs:
+      plugin_path:
+        required: true
+        type: string
+
+jobs:
+  docsgen-python:
+    name: Comparing ${{ github.ref_name }} docs from ${{ github.event_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this project
+        uses: actions/checkout@v3
+
+      - name: Install arcaflow-docsgen
+        run: |
+          wget https://github.com/arcalot/arcaflow-docsgen/releases/download/v0.1.0/arcaflow-docsgen_0.1.0_linux_amd64.tar.gz \
+          && tar -C /usr/local/bin -xzf arcaflow-docsgen_0.1.0_linux_amd64.tar.gz
+
+      - name: Generate schema yaml
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install poetry
+          python -m poetry install --without dev 
+          python ./${{ inputs.plugin_path }} --schema > schema.yaml
+      
+      - name: Create temp readme
+        run: |
+          cp README.md README_TMP.md
+
+      - name: Run arcaflow-docsgen
+        run: |
+          arcaflow-docsgen -markdown README_TMP.md -schema schema.yaml
+
+      - name: Determine diff
+        run: |
+          set +e
+          diff README.md README_TMP.md > arcaflow-docsgen.diff
+          set -e
+          echo "README_DIFF=$(cat arcaflow-docsgen.diff | wc -l)" >> $GITHUB_ENV
+      
+      - name: Update README.md if necessary
+        if: env.README_DIFF != 0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_EMAIL: arcalot@redhat.com
+          GH_USERNAME: arcabot
+        run: |
+          mv README_TMP.md README.md
+          git config --global user.name $GH_USERNAME
+          git config --global user.email $GH_EMAIL
+          git add README.md
+          git commit -m 'Automatic upate of README.md by arcaflow-docsgen arcabot'
+          git push

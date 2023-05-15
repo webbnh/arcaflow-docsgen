@@ -45,3 +45,7 @@ if [ "$(cat /tmp/arcaflow-docsgen.diff | wc -l)" -ne 0 ]; then
     exit 1
 fi
 ```
+
+## Reusable Workflow
+
+To utilize arcaflow-docsgen in a workflow to automatically update the README.md with changes, please review full documentation [here](.github/workflows/README.md).
