@@ -24,7 +24,7 @@ jobs:
           python -m venv .venv
           source .venv/bin/activate
           pip install poetry
-          python -m poetry install --without dev 
+          python -m poetry install 
           python ./${{ inputs.plugin_path }} --schema > schema.yaml
       
       - name: Create temp readme
