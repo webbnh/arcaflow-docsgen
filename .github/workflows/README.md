@@ -13,12 +13,16 @@ Below example required somewhere in the README.md file
 ```
 ## Configuration
 
-Arcaflow Docsgen can be called in a workflow using the `plugin_path` as an input that points to the relative path of the python plugin ".py" file.
+Arcaflow Docsgen can be called in a workflow using the `plugin_path` as an input that points to the relative or absolute path of the python plugin ".py" file.  
+Permissions for `contents` and `pull-requests` may need to be set depending on local and organization workflow permission settings. More documentation can be found [here](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token).
 
 example: 
 ```yaml
 - name: docsgen
     uses: arcalot/arcaflow-docsgen/.github/workflows/reusable_workflow.yaml@main
+    permissions:
+      contents: write
+      pull-requests: write
     with:
       plugin_path: "arcaflow_plugin_template_python/example_plugin.py"
 ```
