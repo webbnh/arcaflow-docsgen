@@ -14,35 +14,10 @@ jobs:
     uses: arcalot/arcaflow-reusable-workflows/.github/workflows/go_lint_and_test.yaml@main
   build:
     name: build
-    runs-on: ubuntu-latest
     permissions:
       contents: write
     needs:
       - lint_and_test
-    env:
+    with:
       for_release: ${{ startsWith(github.event.ref, 'refs/tags/') }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ env.go_version }}
-      - name: Build ${{ env.for_release == 'true' && 'release' || 'snapshot' }}
-        uses: goreleaser/goreleaser-action@v5
-        with:
-          distribution: goreleaser
-          version: latest
-          args: ${{ env.ARGS }}
-        env:
-          GITHUB_TOKEN: ${{ env.for_release == 'true' && secrets.GITHUB_TOKEN || '' }}
-          GOPROXY: direct
-          GOSUMDB: off
-          ARGS: ${{ env.for_release == 'true' && 'release --clean' || 'build --snapshot' }}
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: binaries
-          path: dist
+    uses: arcalot/arcaflow-reusable-workflows/.github/workflows/go_release.yaml@main
