@@ -9,7 +9,7 @@ on:
 jobs:
   lint_and_test:
     name: lint and test
-    uses: arcalot/arcaflow-reusable-workflows/.github/workflows/go_lint_and_test.yaml@main
+    uses: webbnh/arcaflow-reusable-workflows/.github/workflows/go_lint_and_test.yaml@main  # FIXME:  set this back to the arcalot organization after testing
     with:
       go_version: ${{ vars.ARCALOT_GO_VERSION }}
   build:
@@ -18,7 +18,7 @@ jobs:
       contents: write
     needs:
       - lint_and_test
-    uses: arcalot/arcaflow-reusable-workflows/.github/workflows/go_release.yaml@main
+    uses: webbnh/arcaflow-reusable-workflows/.github/workflows/go_release.yaml@main  # FIXME:  set this back to the arcalot organization after testing
     with:
       go_version: ${{ vars.ARCALOT_GO_VERSION }}
       for_release: ${{ startsWith(github.event.ref, 'refs/tags/') }}
